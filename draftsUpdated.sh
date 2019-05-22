@@ -31,7 +31,7 @@ if [ -f postfile.txt ]; then
         echo "博客：$title $postPath 博客类型：${categories}"
         if [ -f "${postPath}" ]; then
 
-            sed -i '' "s/<#.*#>//g" "${postPath}"
+            sed -i "s/<#.*#>//g" "${postPath}"
             #直接修改文件内容(危险动作) updated:值
             createdLine=$(cat ${postPath} | grep 'date: 创建时间')  #当初始值"创建时间"时才更新
             updatedLine=$(cat ${postPath} | grep 'updated: ') # 每次执行都更新
@@ -42,21 +42,21 @@ if [ -f postfile.txt ]; then
             #博客标题
             if [ "$titleLine" != "" ]; then
                 echo "--开始替换 title: --"
-                sed -i '' "s/${titleLine}/title: ${title}/g" "${postPath}"
+                sed -i "s/${titleLine}/title: ${title}/g" "${postPath}"
             else
                 echo "title: 已命名"
             fi
             #替换创建时间
             if [ "$createdLine" != "" ]; then
                 echo "--开始替换 date: --"
-                sed -i '' "s/${createdLine}/date: ${time}/g" "${postPath}"
+                sed -i "s/${createdLine}/date: ${time}/g" "${postPath}"
             else
                 echo "date: 不存在"
             fi
             #替换更新时间
             if [ "$updatedLine" != "" ]; then
                 echo "--开始替换 updated: --"
-                sed -i '' "s/${updatedLine}/updated: ${time}/g" "${postPath}"
+                sed -i "s/${updatedLine}/updated: ${time}/g" "${postPath}"
             else
                 echo "updated: 不存在"
             fi
