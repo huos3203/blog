@@ -22,6 +22,9 @@ left header
 第一个Demo：`CLImageEditorDemo`使用源码的demo
 第二个Demo：`CocoapodsDemo`使用cocoapods管理依赖
 endheader
+
+scale 3.0
+
 package "Demo"{
 class "ViewController" as DemoVC 
 }
@@ -92,39 +95,22 @@ class "JHImageEditorViewController" as jheditorvc {
     //底部toolbar功能切换方法
     - (void)swapToolBarWithEditing:(BOOL)editing
 }
-
+class "JHMenuToolBar" as JHBar {
+    __ 函数组__
+    //重写drawRect:删除toolbar的系统样式
+    - (void) drawRect:(CGRect)rect
+}
 folder "ImageTools" as imgtools {
 
     class "CLImageToolBase" as basetool {
-        --属性组 --
-        + _CLImageEditorViewController *editor;
-        + CLImageToolInfo *toolInfo;
-        --方法--
-        - (id)initWithImageEditor:withToolInfo:
-        - (void)setup;
-        - (void)cleanup;
-        - (void)executeWithCompletionBlock:(void(^)(UIImage *image, NSError *error, NSDictionary *userInfo))
-        - (UIImage*)imageForKey:defaultImageName:
-}
+    }
     class "CLDrawTool" as drawtool {
-        --属性组 --
-        + var :String=""	
-        __ 函数组__
-        - (void)setup
-        - (void)cleanup
-        - (void)setMenu
     }
    folder "OptionalImageTools"{
     class "CLTextTool" as texttool {
-        --属性组 --
-        + var :String=""	
-        __ 函数组__
-        + func (:,:)
     }
 } 
 }
-
-
 
 basetool <|-- drawtool
 basetool <|-- texttool
@@ -132,7 +118,7 @@ basetool <|-- texttool
 
 folder "ToolSettings" {
 class "CLToolbarMenuItem" as CLmenuItem {
-    --属性组 --
+--属性组 --
     + NSString *title;
     + UIImage *iconImage;
     + UIViewContentMode iconImageContentMode;
@@ -140,22 +126,16 @@ class "CLToolbarMenuItem" as CLmenuItem {
     + UIImageView *iconView;
     --构造方法--
     - (id)initWithFrame:target:action:toolInfo:
-}
-class "CLImageToolInfo+Private" as infopr {
+    }
+    class "CLImageToolInfo+Private" as infopr {
     + (NSArray*)toolsWithToolClass:
-}
-class "CLClassList" as clslist{
+    }
+    class "CLClassList" as clslist{
     + (NSArray*)subclassesOfClass:
+    }
+    class CLImageEditorTheme+Private 
 }
-class CLImageEditorTheme+Private
-class CLCircleView
 
-class "JHMenuToolBar" as JHBar {
-    __ 函数组__
-    //重写drawRect:删除toolbar的系统样式
-    - (void) drawRect:(CGRect)rect
-}
-}
 Node "bundle"{
 
 Node "CLImageEditor.Bundle" as b{
@@ -186,6 +166,54 @@ infopr ..> clslist
 theme ..> bundle 
 
 CLmenuItem -down- imgtools
+
+```
+
+### 工具类图
+
+```puml
+title  画笔工具和文本批注工具
+left header
+
+endheader
+
+folder "ImageTools" as imgtools {
+
+    class "CLImageToolBase" as basetool {
+        --属性组 --
+        + _CLImageEditorViewController *editor;
+        + CLImageToolInfo *toolInfo;
+        --方法--
+        - (id)initWithImageEditor:withToolInfo:
+        - (void)setup;
+        - (void)cleanup;
+        - (void)executeWithCompletionBlock:(void(^)(UIImage *image, NSError *error, NSDictionary *userInfo))
+        - (UIImage*)imageForKey:defaultImageName:
+}
+    class "CLDrawTool" as drawtool {
+        --属性组 --
+        + var :String=""
+        __ 函数组__
+        - (void)setup
+        - (void)cleanup
+        - (void)setMenu
+    }
+   folder "OptionalImageTools"{
+    class "CLTextTool" as texttool {
+        --属性组 --
+        + var :String=""
+        __ 函数组__
+        + func (:,:)
+    }
+    
+    class "CLCircleView" as circle{
+        
+    }
+basetool <|-- drawtool
+basetool <|-- texttool
+circle *-up-> texttool:代码实现的放大缩小文本的控制手柄
+
+}
 
 ```
 
