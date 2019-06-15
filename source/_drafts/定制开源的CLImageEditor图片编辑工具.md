@@ -77,8 +77,22 @@ class "CLImageToolInfo" as tool {
     + (CLImageToolInfo*)toolInfoForToolClass:
     - (CLImageToolInfo*)subToolInfoWithToolName:ecursive:
 }
-class "JHImageEditorViewController" as jheditorvc {
+'package，node，folder，frame，cloud，database'
+package "图片编辑器VC" as VC {
+class "_CLImageEditorViewController" as editorvc {
     --属性组 --
+    - UIScrollView *menuView;
+    __UI函数--
+    //初始化图片浏览器,放大缩小功能
+    - (void)initImageScrollView
+    //初始化toolbar
+    - (void)installMenuToolBar
+    //底部toolbar功能切换方法
+    - (void)swapToolBarWithEditing:(BOOL)editing
+    }
+ 
+class "JHImageEditorViewController" as jheditorvc {
+--属性组 --
     - UIScrollView *menuView;
     - JHMenuToolBar *menuToolBar;
     - UIBarButtonItem *confirmBtn;
@@ -96,23 +110,57 @@ class "JHImageEditorViewController" as jheditorvc {
     - (void)reloadMenuToolBar
     //底部toolbar功能切换方法
     - (void)swapToolBarWithEditing:(BOOL)editing
+    }
+    note top of jheditorvc
+    1. 定制底部bar: 取消/保存和x/之间的切换
+    2. 封装接口,提供上传按钮回调事件
+    end note
+    note top of editorvc
+        自带的demo编辑器，包含所有的官方功能 
+    end note
+     class "JHMenuToolBar" as JHBar {
+        __ 函数组__
+        //重写drawRect:删除toolbar的系统样式
+        - (void) drawRect:(CGRect)rect
+    } 
 }
-note top of jheditorvc
-1. 定制底部bar: 取消/保存和x/之间的切换
-2. 封装接口,提供上传按钮回调事件
-end note
-class "JHMenuToolBar" as JHBar {
-    __ 函数组__
-    //重写drawRect:删除toolbar的系统样式
-    - (void) drawRect:(CGRect)rect
+folder "JH"{
+    'package，node，folder，frame，cloud，database'
+    package "六色板" as sixcolor {
+        class "JHColorBoardView" as colorboard {
+        __构造器__
+        -(id)initWithFrame:for:colorHandler:
+        --私有变量--
+        //支持的工具类型
+        JHImageEditorType type
+        //选色触发回调block
+        (void(^ColorHandler)(UIColor *))
+        }
+        enum "JHImageEditorType" as tooltype {
+        JHImage_Draw,
+        JHImage_Text,
+        }
+        class "JHColorCellModel" as cellmodel {
+        --属性组 --
+        UIColor *color
+        }
+        class "JHColorCell" as cell {
+        --属性组 --
+        JHColorCellModel *model
+        } 
+        cell ..> cellmodel
+        colorboard o--> cell
+        colorboard ..> tooltype
+    }
 }
+
 folder "ImageTools" as imgtools {
 
     class "CLImageToolBase" as basetool {
     }
     class "CLDrawTool" as drawtool {
     }
-   folder "OptionalImageTools"{
+   folder "OptionalImageTools可选工具箱"{
     class "CLTextTool" as texttool {
     }
 } 
@@ -120,7 +168,8 @@ folder "ImageTools" as imgtools {
 
 basetool <|-- drawtool
 basetool <|-- texttool
-
+colorboard *-up-> drawtool
+colorboard *-up-> texttool
 
 folder "ToolSettings" {
 class "CLToolbarMenuItem" as CLmenuItem {
@@ -141,28 +190,29 @@ class "CLToolbarMenuItem" as CLmenuItem {
     }
 }
 
-Node "bundle"{
-
-Node "CLImageEditor.Bundle" as b{
-    folder "icon"{
-        folder "black"{
-
+    Node "bundle"{
+        Node "CLImageEditor.Bundle" as b{
+            folder "icon"{
+                folder "black"{
+        
+                }
+        
+                folder "white"{
+        
+                }
+            }
         }
-
-        folder "white"{
-
+        Node "JHImageEditor.Bundle" as jhb {
+    
         }
-    }
-}
-Node "JHImageEditor.Bundle" as jhb {
+      }
 
-  }
-  }
-}
 editor *-up-> DemoVC
 editor <|-- jheditorvc
+editor <|-- editorvc
 JHBar *-up-> jheditorvc:底部保存/上传按钮组类
 CLmenuItem *-up-> jheditorvc: menuView中的菜单项类
+CLmenuItem *-up-> editorvc: menuView中的菜单项类
 theme *-up-> editor
 tool *-up-> editor
 theme -- CLmenuItem: <font color=red>**创建**</font>\n类方法获取菜单项实例
@@ -171,20 +221,10 @@ infopr ..> clslist
 theme ....> bundle 
 
 CLmenuItem --down- imgtools
+imgtools <|....down... imgtools2
+folder "ImageTools工具箱" as imgtools2 {
 
-```
-
-### 工具类图
-
-```puml
-title  画笔工具和文本批注工具
-left header
-
-endheader
-
-folder "ImageTools" as imgtools {
-
-    class "CLImageToolBase" as basetool {
+    class "CLImageToolBase" as basetool2 {
         --属性组 --
         + _CLImageEditorViewController *editor;
         + CLImageToolInfo *toolInfo;
@@ -196,7 +236,7 @@ folder "ImageTools" as imgtools {
         + (void)executeWithCompletionBlock:(void(^)(UIImage *image, NSError *error, NSDictionary *userInfo))
         + (UIImage*)imageForKey:defaultImageName:
 }
-    class "CLDrawTool" as drawtool {
+    class "CLDrawTool" as drawtool2 {
         --属性组 --
         + var :String=""
         --私有变量--
@@ -220,7 +260,7 @@ folder "ImageTools" as imgtools {
         - (void)cleanup
         - (void)setMenu
     }
-    note bottom of drawtool
+    note bottom of drawtool2
     画笔定制:
     1. 新增撤销/重做功能
     2. 新增六色选择器
@@ -230,7 +270,7 @@ folder "ImageTools" as imgtools {
 
     end note
    folder "OptionalImageTools"{
-    class "CLTextTool" as texttool {
+    class "CLTextTool" as texttool2 {
         --属性组 --
         __ 函数组__
         --功能方法--
@@ -322,15 +362,15 @@ folder "ImageTools" as imgtools {
     end note
     class "CLCircleView" as circle{        
     }
-basetool <|-- drawtool
-basetool <|-- texttool
+basetool2 <|-- drawtool2
+basetool2 <|-- texttool2
 circle *-up> cltextview:控制柄
-cltextview *--up-> texttool:文本编辑框
-textsettingview *-up-> texttool:键盘顶部输入框\n支持右滑动高级设置功能
-textsettingdelegate o-up- texttool:遵守代理协议
+cltextview *--up-> texttool2:文本编辑框
+textsettingview *-up-> texttool2:键盘顶部输入框\n支持右滑动高级设置功能
+textsettingdelegate o-up- texttool2:遵守代理协议
 textsettingdelegate *-down-> textsettingview
 }
-
+}
 ```
 ### 时序图
 ```puml
