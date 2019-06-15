@@ -97,6 +97,10 @@ class "JHImageEditorViewController" as jheditorvc {
     //底部toolbar功能切换方法
     - (void)swapToolBarWithEditing:(BOOL)editing
 }
+note top of jheditorvc
+1. 定制底部bar: 取消/保存和x/之间的切换
+2. 封装接口,提供上传按钮回调事件
+end note
 class "JHMenuToolBar" as JHBar {
     __ 函数组__
     //重写drawRect:删除toolbar的系统样式
@@ -135,7 +139,6 @@ class "CLToolbarMenuItem" as CLmenuItem {
     class "CLClassList" as clslist{
     + (NSArray*)subclassesOfClass:
     }
-    class CLImageEditorTheme+Private 
 }
 
 Node "bundle"{
