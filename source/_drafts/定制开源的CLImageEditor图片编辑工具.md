@@ -216,4 +216,63 @@ circle *-up-> texttool:代码实现的放大缩小文本的控制手柄
 }
 
 ```
+### 时序图
+```puml
+title 电子巡查录入页需求问题分析
+left header
+1. 提交业务流程问题的分析
+endheader
+
+autonumber 0
+'actor,boundary,control,entity,database
+actor 巡查员  as man 
+entity 巡查页 as lr 
+actor 截图 as jt
+actor 录屏 as lp
+actor 提交 as tj
+entity 详情页 as detail
+actor 整改 as zg
+actor 布任 as task
+man -[#black]> lr :进入电子巡查
+activate man
+deactivate man
+activate lr
+lr -[#black]>jt :截图编辑批注
+activate jt
+jt -[#black]>lr :更新图片模块
+deactivate jt
+lr -[#black]>lp :开始录屏取证
+activate lp
+lp -[#black]>lr :更新视频模块
+deactivate lp
+
+===提交业务流程==
+lr -[#black]>tj :提交检查数据
+activate tj 
+tj -[#red]>lr :<font color=red>__提交后变更按钮状态发起整改__</font>\n<font color=red>__（当巡查员再次截屏，会怎样）__</font>
+deactivate tj
+
+lr -[#black]> zg:进入整改页
+activate zg
+deactivate zg
+lr -[#black]> task:发布任务
+activate task 
+deactivate 
+deactivate lr
+
+===建议提交业务==
+lr -[#black]>tj :提交检查数据
+activate tj 
+tj -[#red]>detail :__提交后发起整改__
+deactivate tj
+activate detail
+detail -[#black]> zg:进入整改页
+activate zg
+deactivate zg
+detail -[#black]> task:发布任务
+activate task 
+deactivate 
+deactivate detail
+
+```
 
