@@ -83,11 +83,13 @@ class "JHImageEditorViewController" as jheditorvc {
     - JHMenuToolBar *menuToolBar;
     - UIBarButtonItem *confirmBtn;
     - UIBarButtonItem *cancelBtn;
-    __ geter函数组__
+    __ getter函数组__
     - (UIToolBar*)UIToolBar
     - (UIBarButtonItem *)confirmBtn
     - (UIBarButtonItem *)cancelBtn
-    --toolbar切换函数--
+    --UI函数--
+    //初始化图片浏览器,放大缩小功能
+    - (void)initImageScrollView
     //初始化toolbar
     - (void)installMenuToolBar
     //重装toolbar
@@ -194,11 +196,36 @@ folder "ImageTools" as imgtools {
     class "CLDrawTool" as drawtool {
         --属性组 --
         + var :String=""
+        --私有变量--
+        //存储每一张图片
+        NSMutableArray *_lineArray;
+        NSMutableArray *_undoLines;
+        UIButton *_undo;
+        UIButton *_redo;
+
+        --私有函数--
+        //撤销
+        -(void)unPreDoAction:
+        -(void)clearLine:(NSArray *)pointArray
+        -(void)clearLine:to:
+        //重做
+        -(void)rePreDoAction:
+        -(void)reDrawLine
+        -(void)drawLine:to:
         __ 函数组__
         - (void)setup
         - (void)cleanup
         - (void)setMenu
     }
+    note bottom of drawtool
+    画笔定制:
+    1. 新增撤销/重做功能
+    2. 新增六色选择器
+    3. 底部toolbar适配iPhonx
+    4. 底部显示图片问题,
+    注释掉:<font color=red>scrollview.clipsToBounds = NO;</font>
+
+    end note
    folder "OptionalImageTools"{
     class "CLTextTool" as texttool {
         --属性组 --
