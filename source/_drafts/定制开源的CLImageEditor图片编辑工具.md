@@ -163,9 +163,9 @@ tool *-up-> editor
 theme -- CLmenuItem: <font color=red>**创建**</font>\n类方法获取菜单项实例
 infopr *-up-> tool:<font color=red>**获取**</font>\n通过subTools获取某个菜单项实例\n定制菜单项实例的UI外观
 infopr ..> clslist
-theme ..> bundle 
+theme ....> bundle 
 
-CLmenuItem -down- imgtools
+CLmenuItem --down- imgtools
 
 ```
 
@@ -183,12 +183,13 @@ folder "ImageTools" as imgtools {
         --属性组 --
         + _CLImageEditorViewController *editor;
         + CLImageToolInfo *toolInfo;
-        --方法--
-        - (id)initWithImageEditor:withToolInfo:
-        - (void)setup;
-        - (void)cleanup;
-        - (void)executeWithCompletionBlock:(void(^)(UIImage *image, NSError *error, NSDictionary *userInfo))
-        - (UIImage*)imageForKey:defaultImageName:
+        --public接口方法--
+        + (id)initWithImageEditor:withToolInfo:
+        + (void)setup;   //初始化批注工具
+        + (void)cleanup; //清除批注编辑操作
+        ///图片合并完成回调方法
+        + (void)executeWithCompletionBlock:(void(^)(UIImage *image, NSError *error, NSDictionary *userInfo))
+        + (UIImage*)imageForKey:defaultImageName:
 }
     class "CLDrawTool" as drawtool {
         --属性组 --
@@ -201,18 +202,103 @@ folder "ImageTools" as imgtools {
    folder "OptionalImageTools"{
     class "CLTextTool" as texttool {
         --属性组 --
-        + var :String=""
         __ 函数组__
-        + func (:,:)
+        --功能方法--
+        ///键盘顶部文本输入框的确定按钮事件
+        - (void)pushedButton:
     }
+    class "_CLTextView" as cltextview {
+        --接口属性组 --
+        NSString *text;
+        UIFont *font;
+        UIColor *fillColor;
+        UIColor *borderColor;
+        CGFloat borderWidth;
+        NSTextAlignment textAlignment;
+        --接口方法--
+        + (void)setActiveTextView:(_CLTextView*)view;
+        - (id)initWithTool:(CLTextTool*)tool;
+        - (void)setScale:(CGFloat)scale;
+        - (void)sizeToFitWithMaxWidth:lineHeight:
+        --功能方法--
+        //编辑框删除事件
+        - (void)pushedDeleteBtn:
+        //_label事件
+        - (void)viewDidTap: //点击事件,激活输入
+        - (void)viewDidPan: //拖动事件,换坐标
+        //旋转放大操作柄事件
+        - (void)circleViewDidPan:
+        //清除虚线框
+        -(void)removeViewBorder:
+
+    } 
+    note bottom of cltextview
+         文本编辑框View
+         定制:
+         1. 替换删除按钮样式
+         2. 文本框虚线框的自适应文本框度高度,完成之后的清除操作等
+         3. 替换操作柄按钮样式
+    end note
     
-    class "CLCircleView" as circle{
+    class "CLTextSettingView" as textsettingview {
+        --属性组 --
+        + id<CLTextSettingViewDelegate> delegate;
+        + NSString *selectedText;
+        + UIColor *selectedFillColor;
+        + UIColor *selectedBorderColor;
+        + CGFloat selectedBorderWidth;
+        + UIFont *selectedFont;
+        --私有变量--
+        //高级设置菜单的容器
+        - UIScrollView *_scrollView;
+        //键盘顶部textView输入框
+        - UITextView *_textView;
+        ..其他高级设置控件..
+        - CLColorPickerView *_colorPickerView;
+        - CLFontPickerView *_fontPickerView;
+        - UIView *_colorPanel;
+        - CLCircleView *_fillCircle;
+        - CLCircleView *_pathCircle;
+        - UISlider *_pathSlider;
+        --接口函数--
+        + (void)setTextColor:(UIColor*)textColor;
+        + (void)setFontPickerForegroundColor:(UIColor*)foregroundColor;
+        ///根据索引显示某个高级设置
+        + (void)showSettingMenuWithIndex:(NSInteger)index animated:(BOOL)animated;
+        --功能方法--
+        //初始化View
+        - (void)customInit
         
+        //键盘事件
+        - (void)keyBoardWillShow:
+        - (void)keyBoardWillHide:
+        - (void)keyBoardWillChange:withTextViewHeight:
+    }
+
+    interface "CLTextSettingViewDelegate" as textsettingdelegate {
+    - (void)textSettingView:didChangeText:(NSString*)text;
+    - (void)textSettingView:didChangeFillColor:(UIColor*)fillColor;
+    - (void)textSettingView:didChangeBorderColor:(UIColor*)borderColor;
+    - (void)textSettingView:didChangeBorderWidth:(CGFloat)borderWidth;
+    - (void)textSettingView:didChangeFont:(UIFont*)font;    
+    }
+    note bottom of textsettingview
+         键盘顶部输入框/支持右滑动高级设置功能
+         定制:
+         1. --文本输入框样式--
+         2. 添加x号清除按钮
+         3. 固定高度/支持上下滑动预览文本
+         4. 设置图片中的文本的字体样式等
+    end note
+    class "CLCircleView" as circle{        
     }
 basetool <|-- drawtool
 basetool <|-- texttool
-circle *-up-> texttool:代码实现的放大缩小文本的控制手柄
-
+circle *-up> cltextview:控制柄
+cltextview *--up-> texttool:文本编辑框
+textsettingview *-up-> texttool:键盘顶部输入框\n支持右滑动高级设置功能
+textsettingdelegate o-up- texttool:遵守代理协议
+textsettingdelegate *-down-> textsettingview
 }
 
 ```
@@ -261,9 +347,10 @@ deactivate
 deactivate lr
 
 ===建议提交业务==
+autonumber 5
 lr -[#black]>tj :提交检查数据
 activate tj 
-tj -[#red]>detail :__提交后发起整改__
+tj -[#red]>detail :__提交生成巡查记录__
 deactivate tj
 activate detail
 detail -[#black]> zg:进入整改页
