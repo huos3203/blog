@@ -189,6 +189,13 @@ class "CLToolbarMenuItem" as CLmenuItem {
     + (NSArray*)subclassesOfClass:
     }
 }
+note bottom of infopr
+     两种方式屏蔽
+     第一种:在CLImageToolInfo+Private.m中添加如下代码
+     if(![cls isEqualToString:@"CLDrawTool"]
+     && ![cls isEqualToString:@"CLTextTool"]) continue;
+     第二种: 如下实现,获取工具实例,然后设置available为NO
+end note
 
     Node "bundle"{
         Node "CLImageEditor.Bundle" as b{
