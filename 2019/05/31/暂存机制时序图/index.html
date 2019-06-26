@@ -5,22 +5,21 @@
   
 
   
-  <title>甘特图 | 布衣男儿</title>
+  <title>暂存机制时序图 | 布衣男儿</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="抢拍干项目安排  我的贡献 我的任务管理 处理任务页   类图实现使用viper设计项目搭建">
+  <meta name="description" content="UML时序图">
 <meta property="og:type" content="article">
-<meta property="og:title" content="甘特图">
-<meta property="og:url" content="https://huos3203.github.io/2018/08/19/甘特图/index.html">
+<meta property="og:title" content="暂存机制时序图">
+<meta property="og:url" content="https://huos3203.github.io/2019/05/31/暂存机制时序图/index.html">
 <meta property="og:site_name" content="布衣男儿">
-<meta property="og:description" content="抢拍干项目安排  我的贡献 我的任务管理 处理任务页   类图实现使用viper设计项目搭建">
+<meta property="og:description" content="UML时序图">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://www.plantuml.com/plantuml/svg/NP8nIyD07CNt-nJ_pIcqKGgwI1TtiU0ICXp9KICX2NVNW9k3IA624HKdaQ13bzQfYodro_II-2tCtIMboNOy7h_ttZyPCeuf7-E0SnJHy9eu79J4uB1ldlJwWvvvZ4QJmCKtW2a1nmyPST48ymdjQCWgbvjocTg06LWkOTuuiC77JCAWCZDaNNhdPnTviX3PZxR5NaHeupAb2rd5otoxcUt37Cn8omHDc5W-vDF4XYiSHIHWWFak-e012QfQXY7Mj-BnoJ2GfLzDmxXX3bIz2YgcRsKw_qjN-qRVOxmxH7pT5SbznnXXJaE_iHvfQ4KjikVy_SFijephYY0xvgjP-VqgE-gN9dBIZPRBVnVRx5D3sqnbhw4LjRckSLgV4Eq-YvJK0TgIcehgnLAe9o5jbehAGCCgGlqs_m00">
-<meta property="og:image" content="https://www.plantuml.com/plantuml/svg/Iyv9B2vMSEHA1jDE0000">
-<meta property="og:updated_time" content="2018-08-18T16:22:05.000Z">
+<meta property="og:image" content="https://www.plantuml.com/plantuml/svg/TPJDRjf058NtynIpYrJ1ebrQfG_HDt3mj44YEB5Df7G5g2Zy1gAGXX2YX40KLrM0I2rG0-5bPgx9AgzGspF-IL1P63Ft7kOxPwvjf8mqmN0-OLQ3NJwX9CaOHCCxH5Q8XkXoPRTC-t5kTxxRhMjsihIj5LpTGQEnNesT4dsgigv9vttx9azd3r2-N_TgJZChJkdo5FxaRREAMAD0PyVhNF5bqP6JXggzB6hRQZQZoDfXBAbc34rDnvnzKyPXJ94DULlMIIY2rWXgULbdfL-iMKS1XeJZyK_uOpoEO5A2_0YHZ2AmqTOx_i4EEkkFeNqCPezTdMEnleKy3iocFRY-OoTjBEjuJtP140V1qCyvfVLmp9PdRbKZILLJaC35KAtRnNikIttRaLNaasCdHcQTkgNKxbTbEv3GMOKkRjY5wPQoUsdLOmrawz4K7Wj2gP7zg78-PvKUTElELUXreXquvuGI2Kx2Yua4uYwyR3YoHAqM6tP4M-s8pWS8yPBN9VWbpFleBEU6apgG3UBNCF9lN87d2akEJRjyz7vNLKWQpiPG7uOwRfmtkXBVhIGoyAHXUn26VnFk8y7bR_WnrWtPoEg93qWXcwh8Md0Ov0sB6rIZIQr145Ga0YzjYJsqMS7Kiv_9VfReXl0KKee9YFnspyYxHdcTeHdTykbvxls5SWwwPVU9y3pRbGdaylyFYfDmptmW-0Hk6eeil0NXio49lpv9k2cl8p52aMrdnUUBmQjj8pt2tgne_xIucKqqyS-lsBpG_FVA5rLrlX0Rrg3KT9zOll0F">
+<meta property="og:updated_time" content="2019-05-30T18:46:15.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="甘特图">
-<meta name="twitter:description" content="抢拍干项目安排  我的贡献 我的任务管理 处理任务页   类图实现使用viper设计项目搭建">
-<meta name="twitter:image" content="https://www.plantuml.com/plantuml/svg/NP8nIyD07CNt-nJ_pIcqKGgwI1TtiU0ICXp9KICX2NVNW9k3IA624HKdaQ13bzQfYodro_II-2tCtIMboNOy7h_ttZyPCeuf7-E0SnJHy9eu79J4uB1ldlJwWvvvZ4QJmCKtW2a1nmyPST48ymdjQCWgbvjocTg06LWkOTuuiC77JCAWCZDaNNhdPnTviX3PZxR5NaHeupAb2rd5otoxcUt37Cn8omHDc5W-vDF4XYiSHIHWWFak-e012QfQXY7Mj-BnoJ2GfLzDmxXX3bIz2YgcRsKw_qjN-qRVOxmxH7pT5SbznnXXJaE_iHvfQ4KjikVy_SFijephYY0xvgjP-VqgE-gN9dBIZPRBVnVRx5D3sqnbhw4LjRckSLgV4Eq-YvJK0TgIcehgnLAe9o5jbehAGCCgGlqs_m00">
+<meta name="twitter:title" content="暂存机制时序图">
+<meta name="twitter:description" content="UML时序图">
+<meta name="twitter:image" content="https://www.plantuml.com/plantuml/svg/TPJDRjf058NtynIpYrJ1ebrQfG_HDt3mj44YEB5Df7G5g2Zy1gAGXX2YX40KLrM0I2rG0-5bPgx9AgzGspF-IL1P63Ft7kOxPwvjf8mqmN0-OLQ3NJwX9CaOHCCxH5Q8XkXoPRTC-t5kTxxRhMjsihIj5LpTGQEnNesT4dsgigv9vttx9azd3r2-N_TgJZChJkdo5FxaRREAMAD0PyVhNF5bqP6JXggzB6hRQZQZoDfXBAbc34rDnvnzKyPXJ94DULlMIIY2rWXgULbdfL-iMKS1XeJZyK_uOpoEO5A2_0YHZ2AmqTOx_i4EEkkFeNqCPezTdMEnleKy3iocFRY-OoTjBEjuJtP140V1qCyvfVLmp9PdRbKZILLJaC35KAtRnNikIttRaLNaasCdHcQTkgNKxbTbEv3GMOKkRjY5wPQoUsdLOmrawz4K7Wj2gP7zg78-PvKUTElELUXreXquvuGI2Kx2Yua4uYwyR3YoHAqM6tP4M-s8pWS8yPBN9VWbpFleBEU6apgG3UBNCF9lN87d2akEJRjyz7vNLKWQpiPG7uOwRfmtkXBVhIGoyAHXUn26VnFk8y7bR_WnrWtPoEg93qWXcwh8Md0Ov0sB6rIZIQr145Ga0YzjYJsqMS7Kiv_9VfReXl0KKee9YFnspyYxHdcTeHdTykbvxls5SWwwPVU9y3pRbGdaylyFYfDmptmW-0Hk6eeil0NXio49lpv9k2cl8p52aMrdnUUBmQjj8pt2tgne_xIucKqqyS-lsBpG_FVA5rLrlX0Rrg3KT9zOll0F">
   
     <link rel="alternate" href="/blog/atom.xml" title="布衣男儿" type="application/atom+xml">
   
@@ -71,10 +70,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-甘特图" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-暂存机制时序图" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/blog/2018/08/19/甘特图/" class="article-date">
-  <time datetime="2018-08-18T16:22:05.000Z" itemprop="datePublished">2018-08-18</time>
+    <a href="/blog/2019/05/31/暂存机制时序图/" class="article-date">
+  <time datetime="2019-05-30T18:46:15.000Z" itemprop="datePublished">2019-05-30</time>
 </a>
     
   <div class="article-category">
@@ -89,7 +88,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      甘特图
+      暂存机制时序图
     </h1>
   
 
@@ -97,19 +96,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>抢拍干项目安排</p>
-<ol>
-<li>我的贡献</li>
-<li>我的任务管理</li>
-<li>处理任务页</li>
-</ol>
-<p><img src="https://www.plantuml.com/plantuml/svg/NP8nIyD07CNt-nJ_pIcqKGgwI1TtiU0ICXp9KICX2NVNW9k3IA624HKdaQ13bzQfYodro_II-2tCtIMboNOy7h_ttZyPCeuf7-E0SnJHy9eu79J4uB1ldlJwWvvvZ4QJmCKtW2a1nmyPST48ymdjQCWgbvjocTg06LWkOTuuiC77JCAWCZDaNNhdPnTviX3PZxR5NaHeupAb2rd5otoxcUt37Cn8omHDc5W-vDF4XYiSHIHWWFak-e012QfQXY7Mj-BnoJ2GfLzDmxXX3bIz2YgcRsKw_qjN-qRVOxmxH7pT5SbznnXXJaE_iHvfQ4KjikVy_SFijephYY0xvgjP-VqgE-gN9dBIZPRBVnVRx5D3sqnbhw4LjRckSLgV4Eq-YvJK0TgIcehgnLAe9o5jbehAGCCgGlqs_m00"></p>
-<h3 id="类图实现"><a href="#类图实现" class="headerlink" title="类图实现"></a>类图实现</h3><p>使用viper设计项目搭建<br><img src="https://www.plantuml.com/plantuml/svg/Iyv9B2vMSEHA1jDE0000"></p>
+        <h2 id="UML时序图"><a href="#UML时序图" class="headerlink" title="UML时序图"></a>UML时序图</h2><p><img src="https://www.plantuml.com/plantuml/svg/TPJDRjf058NtynIpYrJ1ebrQfG_HDt3mj44YEB5Df7G5g2Zy1gAGXX2YX40KLrM0I2rG0-5bPgx9AgzGspF-IL1P63Ft7kOxPwvjf8mqmN0-OLQ3NJwX9CaOHCCxH5Q8XkXoPRTC-t5kTxxRhMjsihIj5LpTGQEnNesT4dsgigv9vttx9azd3r2-N_TgJZChJkdo5FxaRREAMAD0PyVhNF5bqP6JXggzB6hRQZQZoDfXBAbc34rDnvnzKyPXJ94DULlMIIY2rWXgULbdfL-iMKS1XeJZyK_uOpoEO5A2_0YHZ2AmqTOx_i4EEkkFeNqCPezTdMEnleKy3iocFRY-OoTjBEjuJtP140V1qCyvfVLmp9PdRbKZILLJaC35KAtRnNikIttRaLNaasCdHcQTkgNKxbTbEv3GMOKkRjY5wPQoUsdLOmrawz4K7Wj2gP7zg78-PvKUTElELUXreXquvuGI2Kx2Yua4uYwyR3YoHAqM6tP4M-s8pWS8yPBN9VWbpFleBEU6apgG3UBNCF9lN87d2akEJRjyz7vNLKWQpiPG7uOwRfmtkXBVhIGoyAHXUn26VnFk8y7bR_WnrWtPoEg93qWXcwh8Md0Ov0sB6rIZIQr145Ga0YzjYJsqMS7Kiv_9VfReXl0KKee9YFnspyYxHdcTeHdTykbvxls5SWwwPVU9y3pRbGdaylyFYfDmptmW-0Hk6eeil0NXio49lpv9k2cl8p52aMrdnUUBmQjj8pt2tgne_xIucKqqyS-lsBpG_FVA5rLrlX0Rrg3KT9zOll0F"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://huos3203.github.io/2018/08/19/甘特图/" data-id="cjxdem6kj0007ows61im0wnik" class="article-share-link">Share</a>
+      <a data-url="https://huos3203.github.io/2019/05/31/暂存机制时序图/" data-id="cjxdem6kp0009ows6s6dyqoal" class="article-share-link">Share</a>
       
       
     </footer>
@@ -118,15 +110,20 @@
     
 <nav id="article-nav">
   
-    <a href="/blog/2018/08/19/甘特图/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/blog/2019/06/02/时序图dd/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          甘特图
+          时序图dd
         
       </div>
     </a>
   
+  
+    <a href="/blog/2019/05/31/拍照业务活动图/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">拍照业务活动图</div>
+    </a>
   
 </nav>
 

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>电子巡查项目设计 | 布衣男儿</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="工期预估 整改 录入   用例 时序图 类图 活动图   工期预估整改二级布局器入口配置/电子巡查底部详情 1复用旧版电子整改管理列表(新增过滤器)待定页 1电子巡查记录(列表/过滤器) 1复用/详情页(数据源变更,新增视频类型) 1天 录入电子巡查录入:重构录入界面UI/详情页UI(待定问题图片布局) 2天图片编辑器 1天检查 1联调接口串联业务层 1天 用例用例图截屏–标记–分组到检项–更">
+<meta property="og:type" content="article">
+<meta property="og:title" content="电子巡查项目设计">
+<meta property="og:url" content="https://huos3203.github.io/2019/06/11/电子巡查项目设计/index.html">
+<meta property="og:site_name" content="布衣男儿">
+<meta property="og:description" content="工期预估 整改 录入   用例 时序图 类图 活动图   工期预估整改二级布局器入口配置/电子巡查底部详情 1复用旧版电子整改管理列表(新增过滤器)待定页 1电子巡查记录(列表/过滤器) 1复用/详情页(数据源变更,新增视频类型) 1天 录入电子巡查录入:重构录入界面UI/详情页UI(待定问题图片布局) 2天图片编辑器 1天检查 1联调接口串联业务层 1天 用例用例图截屏–标记–分组到检项–更">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://www.plantuml.com/plantuml/svg/XPBFRjD04CRl-nHxuuAbfW8aBZn3fHoZ75RsjZ5OjkNTYWAg56ZJ94t_0KaZsgQH6qB2WRGWghPA22-JNTjlmJhh9hPJYPizytspCxyPeY83msK8g4x5XrU_PZ-Es8tBsrrsq-LdxSdeoXiqWOfDYXrOm4Z33WYA9_xVSd1Mv3y_-9VRRE0-PfKTlzUH8RvNzKezTj1cvpLsEcQLJo8x6GxPhilxBcir0JQrg1Im7UibLYaa53cKmEMbp7DbwPcIoK2GNJSrz0OY1qFLi0ZMG1RHTISLKvH4rtyQhDHL591RZEOX8Z1dcOPkuXL47Sl8GsYPy5s1h6r2Q20Y6dWAHNq2Sa5vdvzlIwFNs0jQ5zBkO8AfuUGZUIQIIw5_-OrlbGBtMceDHyCKwSQ2-7JiLSlUwDWVVsHV-b9iwohMT44vhUQTeXWXSE-2OfNNliyCbarroynYG-1RT4rkV_dlwvFR4q5TVFXNM_oWomuxzvrPj12Qml5VhsucpI9bmcWaR_YPjzfvM42sZKq24KqXV4IWMATO0niLMQ_66xzv_OvLchxR3zSG_H_kof1yVbNVM35qGYF-zgiP_YVtGqzjti3rZdPIJcbCJfjOTankJtjyoC6-xdlrldncjh2mhxGm3YyELJhU5jR-Jp8QvW6ICn0HHJ2_B-L5x810x9R2nFnOGFnmmbJgBC32dSZ2icim1pejEyS54kp2v1GEY1Y5WTdi_m00">
+<meta property="og:image" content="https://www.plantuml.com/plantuml/svg/XLNBKkDM4DtVhr3DQiPbcHecAzMO_Np0V01bb4328sNCtWp6RoCJ_21W7YOYzb0WO82nBTlmC-ehQJM_aBxg6wD0kK9vmrM_pkdJtQcbrBAkkBK7kAf2hyrFpc5SX-rpfty0nRPRwpgF9JXyP0bzDQKdbKLzVa5FCiXddRxfz2zujmr7JNvq3jQnktD3zkv1XXk6ztJ3tiSKT7OBENwQywmRT7E76JORKxXHTMoJaZ1zTK76PHlhUc9-NLT-JIdpwyeRdhz0VyrF7tXFEU-fvNPBKDs1dIxVpS2M0URzZr4PK_FcTrxS0wE1DK3BffpipIJSodpojo0WYqHaGOK1l-j68anLbnPKbRrdyJYSs6uxpVSgphZ57pOnMJpEeDKD1tNwHO7AJnVSsj2zh47l7BPxJC4_nEZdAkwNGPJNhdbvqpzhUOLlaC_nofd0Z3wyaUEjox0Fbb4RW9d3OgGRBpLuxH5_O7QYl5donfTH2a81MIm6nhK85Yeq5cDKZ_kjwGwpCpBHLTCPx_7J7emCw6_1RJh4IM9HJqn8uN-biVL-Uq0jUkPbTYelrmDomcv3TXkiWVTqwBNBiiTWbNc-Yl0WbtK6eclOARH0QRt89UXqxB9hTzn32yNd3lVuSIOAnXSllGKx9t0S2109n383Xi0yGFW_HdclrnKnReTE_qgK8TyBMFuKafxXR_o-C9_I2NyyZg4FxtdZvlCdJUhZ9I48-GEIyfeB98cCoP608zueHNmzMdxxGTPBcO8H-lmfq8COc7mFtIRvnP3LRuAFiwy-KWGC5RBw45DGWv0RFbkP7JJqpp9U9n-O_1HJLFNZpskhAIMnjhoMZ2VrXJbKjZCwbJKXWk89cBVU_RdVjFop_OypmdmEmKvX5gdL2ALZsvhWDQclJjXEwkiRowaGsoGTqUhM39WPjvhbZG7AD23QinxTiHMsWJ_AOQjfZV27-vvbahlS6Y_QEU4AyYPlN943vM2yK89YLtehv89WnAzlq_CqzAeQYJZzYjHdiSlJcvI0GaSYgXeMNs9jPMKfJ4Um3ec-VpsG1rvj-OVPi8A4Qavi76r4m2jMb1nvgu9x5FxiJXNeQTk_A8S9ZGejtXfU9-kVxLBhgUbCXWpY__yO9HOtbfznK8-eLB7lntN24OBdFBNvvZMjX2YCqj0foSxkNqFrRrw_nuKu0yOkBYndE1JtOIge0POezH6GJI5WXEgtAQXdjA1I3-wGiUizz2XyrElTuLhrSdVqFqwaVnJiw71UQOKBmD-kq1FExNHA60eUvseEZnUg9pX7T9fGWdYi6DuqyJMuHPg2ToMyDh05i7b0Lua59i8ssD7QPDNIdfLha_QtiA9Lfj6-cUmOH8HBXSazfoQNVbbCeR6SH8tuaSgNZq5AagOc9HF8G4eY0Coa0PM7pTU8MTZ-xWmRZbro2rzPy45Ol0tJ_axZXGw_g-D0KUFf-R_M4_hVQQxL5chQtGy__mC0">
+<meta property="og:image" content="https://www.plantuml.com/plantuml/svg/VL7BJjj05DtxA-O36ecr9NVF1_01nXw9GB2HcRHbvxGaDgd8GuH7crIXa8Ye8YMea40Wz6TyPy9VCEEPsCw6pOmzzznppZsNv4a18zQwXs439hzfjm-pOoZtwUaOfdLelsWMTWZsq0OsRUnfqRGolxg4-jVeeIRFkLzcF_TPgmlD6JG7jDFzGCSXBTr0lVdgbtWDgWFgbsXd2k6O_qQp8rORQTYn5QTc5edh5BVNkSoAPbh4zH0D_t1nPEwYJQ9PhaCyju3eUJ3_Eu997yeJKTeslIs5PwqdTjqIZxPdVkQaYkOae9rhyKpm5pv6GXKzLAFdS_Wn4BNYJi6DdQoxHSSslJr4BtqHXInR6zZQubKUH9xi8HcGA1JokqG8vJ-P10kZcmJbSXzZNxeqAubOxGOkleaesY_i8D1idEqo38CUFD9_0rarZ9Gpdb0SCQySJPVW5AGcbbTg8Fh_2uPdMIq5JFXa9ZeF2OQdq0kMM5LWydgFLG4pBx5hFfKAUJ5Lehl8Mv7bSl3imzLt2KyT96jPV2mtG-zsVjT_3Gv5qn94BKoNX3HiGBNBHS8Akts2tZvhLB9k4vbKUR5nTSUaOjb8HxHzHqz6QwjP1WLx0m00">
+<meta property="og:image" content="https://www.plantuml.com/plantuml/svg/XLLRJnj757xk_eeHJ-3Kk2HlIng9Muih4r0S8qL2HSFks1vblUlkZab95GaLKX8ACRGXGS64ca1ZLI85bHOQS_apdlNorB_GixFhNMDmYn2S_SvbpdpdCemoZI1-kiQVxjRNbYusj-i7LRvnvdo0txAaaJH3MO9LOagyLE4ljkpISxwuvSoTrj_CywsFzV9ixNZHETzmoalE-Lwj-ixtj5_jy-stdgaizNGZ-zsilRKBeUrAcM--viLrU-DGjl_w_kBurnW_dkC7ixMJTRxqIhe9niMLsiUTsl4RlbYM_L35LUVF8tljq7xvTmm-mALMhOBUEyCfblZocaHqrKzNKZHiMQXZ33FJq4PrZUfad9970uRk0XenEn2sa24K27qd8VY9Hld1MtlsVRqw3xA0lZ2D74h3d_61NW7SJIQPIVKCYbZCC4bS_QGLpXhvkpX719oAtyTJcZWPHLX35Ah9ISGNJksrVJXjSj8xltFQe6gNeb7buHYcZxFOw5CODVGhsaJXMuhrJBCMDQa7u7mJovtn19qcL4yR5efqQI37GPQUDDW94eBx1s27HzO0qJH1aG92UtxwHqSJY5g3X66g-Kp4TKOon1IUzsVo7XCZmmdyU6R0fLua7S_X386qD40zkTTdBBJnQADJOrc36PVXHZ562k8IVQQ9PsvxcOyOAj5Gv4w4CfApXAQtBUEeCzxliTX5ft0ghnbOzRxbJc3JWew2RlAyfpH3UUWxkbntVft5kWgjbCedm6qGCzpb5G7Ol4IcruK1fU5d2x50wXD9DnX1pCWZ8zraAUpupdBzPOKVbM6Ml462ENHfjdyvuYV5VqwMU76nld7Cd_vX_xnSEorTp5QTirNa3WPouxOKML0LL3adY6jRwbYiH-OlAlQpSuHkoZ3AzUSB2DsIaVF-XuljrJR5RvqQvgwSNZ-WQmI1-5pHhxte12Yv-wzXLDyxuolBpj7l_6o-9LZURGpWADkmTSvBzSgFrzgAc2bJyqmJekqoIOPPmO86zYfFrDPqCrGDyjWuj7_Q4oG9f7cuj8ROspH8eO6WsBK1x_O4XwUAKSrb8DkcS0--zBeXISnfVtrPGcmVyGQQnYOooJS5OZ7vg-7KlSGzxwFTGDmGNP_59b6Rbmw467AdppHqgYJnD97zrfUR4WmjuhgL1pbiB_3_d-uABz-NpyUlr648Q3GLae8R_wVItRojwgItgA-5hxDF60fsDy1LNCzGLb2lEe3vTVWOLQnMR9ogn6yJ2gDYfh52cdVk8D581ZCIJ6N8slNxwyhMlwJ0gXekJZV-PJK4RrL3OaGlv527-_I9BDpdpq_1nGP96XSqXZv7dtqQYrrKrvqFEu5o1ES1j3TtdONVU6aVXZjG9GbMie7INYdL3xS3PO9QBF1xzjefLzn4mWSg4etUyLzhIUJJ3FXZq0o9Lqi0GGmP-SjOl2QkVaBt8VTPl8nu-q0itiRStkxk3jUax4eCzXlGqEEw0TRFz66ggaG7xC5GKWftQiCLoIqfo1DwOwbEw8sbEg7ValsTAWM38-xYNLHgj8KHZOgm_m80">
+<meta property="og:image" content="https://www.plantuml.com/plantuml/svg/LOvVIiD048VVvnJxc5oXEKqX6ne8KTezWANQf56eOYmjjJR-Wo0LX59iIT9S9ZCRdxo2swmMdAUPttpVxWXNU9pHqrfU3scqetLAcxvCBy7ZZc0TthPv5oYwhOen9Lii1nWjwq7ndLzf1-TxEGgqgLV0VVlNWvveTmMqA7nJdAMQXhF0TGpTcanqk0ygOFyIPiWuawlO1ARgw76lnmsQ17I_alcatj_WBFr3cXHV0Wtwjkj0goeN-3xLdlfJZwP-fYvZd3-OwiQJqoE_ZQeyEHpwV4RBrw_77OP3cPqVaiyCemJ33opky4AjDbQZ_W00">
+<meta property="og:updated_time" content="2019-06-11T07:03:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="电子巡查项目设计">
+<meta name="twitter:description" content="工期预估 整改 录入   用例 时序图 类图 活动图   工期预估整改二级布局器入口配置/电子巡查底部详情 1复用旧版电子整改管理列表(新增过滤器)待定页 1电子巡查记录(列表/过滤器) 1复用/详情页(数据源变更,新增视频类型) 1天 录入电子巡查录入:重构录入界面UI/详情页UI(待定问题图片布局) 2天图片编辑器 1天检查 1联调接口串联业务层 1天 用例用例图截屏–标记–分组到检项–更">
+<meta name="twitter:image" content="https://www.plantuml.com/plantuml/svg/XPBFRjD04CRl-nHxuuAbfW8aBZn3fHoZ75RsjZ5OjkNTYWAg56ZJ94t_0KaZsgQH6qB2WRGWghPA22-JNTjlmJhh9hPJYPizytspCxyPeY83msK8g4x5XrU_PZ-Es8tBsrrsq-LdxSdeoXiqWOfDYXrOm4Z33WYA9_xVSd1Mv3y_-9VRRE0-PfKTlzUH8RvNzKezTj1cvpLsEcQLJo8x6GxPhilxBcir0JQrg1Im7UibLYaa53cKmEMbp7DbwPcIoK2GNJSrz0OY1qFLi0ZMG1RHTISLKvH4rtyQhDHL591RZEOX8Z1dcOPkuXL47Sl8GsYPy5s1h6r2Q20Y6dWAHNq2Sa5vdvzlIwFNs0jQ5zBkO8AfuUGZUIQIIw5_-OrlbGBtMceDHyCKwSQ2-7JiLSlUwDWVVsHV-b9iwohMT44vhUQTeXWXSE-2OfNNliyCbarroynYG-1RT4rkV_dlwvFR4q5TVFXNM_oWomuxzvrPj12Qml5VhsucpI9bmcWaR_YPjzfvM42sZKq24KqXV4IWMATO0niLMQ_66xzv_OvLchxR3zSG_H_kof1yVbNVM35qGYF-zgiP_YVtGqzjti3rZdPIJcbCJfjOTankJtjyoC6-xdlrldncjh2mhxGm3YyELJhU5jR-Jp8QvW6ICn0HHJ2_B-L5x810x9R2nFnOGFnmmbJgBC32dSZ2icim1pejEyS54kp2v1GEY1Y5WTdi_m00">
+  
+    <link rel="alternate" href="/blog/atom.xml" title="布衣男儿" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/blog/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">布衣男儿</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/blog/" id="subtitle">不物喜，不己悲，善假物，易参行！</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://huos3203.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-电子巡查项目设计" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2019/06/11/电子巡查项目设计/" class="article-date">
+  <time datetime="2019-06-11T07:03:20.000Z" itemprop="datePublished">2019-06-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      电子巡查项目设计
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- TOC GFM -->
+<ul>
+<li><a href="#工期预估">工期预估</a><ul>
+<li><a href="#整改">整改</a></li>
+<li><a href="#录入">录入</a></li>
+</ul>
+</li>
+<li><a href="#用例">用例</a></li>
+<li><a href="#时序图">时序图</a></li>
+<li><a href="#类图">类图</a></li>
+<li><a href="#活动图">活动图</a></li>
+</ul>
+<!-- /TOC -->
+<h3 id="工期预估"><a href="#工期预估" class="headerlink" title="工期预估"></a>工期预估</h3><h4 id="整改"><a href="#整改" class="headerlink" title="整改"></a>整改</h4><p>二级布局器入口配置/电子巡查底部详情 1<br>复用旧版电子整改管理列表(新增过滤器)待定页 1<br>电子巡查记录(列表/过滤器) 1<br>复用/详情页(数据源变更,新增视频类型) 1天</p>
+<h4 id="录入"><a href="#录入" class="headerlink" title="录入"></a>录入</h4><p>电子巡查录入:<br>重构录入界面UI/详情页UI(待定问题图片布局) 2天<br>图片编辑器 1天<br>检查 1<br>联调接口串联业务层 1天<br><img src="https://www.plantuml.com/plantuml/svg/XPBFRjD04CRl-nHxuuAbfW8aBZn3fHoZ75RsjZ5OjkNTYWAg56ZJ94t_0KaZsgQH6qB2WRGWghPA22-JNTjlmJhh9hPJYPizytspCxyPeY83msK8g4x5XrU_PZ-Es8tBsrrsq-LdxSdeoXiqWOfDYXrOm4Z33WYA9_xVSd1Mv3y_-9VRRE0-PfKTlzUH8RvNzKezTj1cvpLsEcQLJo8x6GxPhilxBcir0JQrg1Im7UibLYaa53cKmEMbp7DbwPcIoK2GNJSrz0OY1qFLi0ZMG1RHTISLKvH4rtyQhDHL591RZEOX8Z1dcOPkuXL47Sl8GsYPy5s1h6r2Q20Y6dWAHNq2Sa5vdvzlIwFNs0jQ5zBkO8AfuUGZUIQIIw5_-OrlbGBtMceDHyCKwSQ2-7JiLSlUwDWVVsHV-b9iwohMT44vhUQTeXWXSE-2OfNNliyCbarroynYG-1RT4rkV_dlwvFR4q5TVFXNM_oWomuxzvrPj12Qml5VhsucpI9bmcWaR_YPjzfvM42sZKq24KqXV4IWMATO0niLMQ_66xzv_OvLchxR3zSG_H_kof1yVbNVM35qGYF-zgiP_YVtGqzjti3rZdPIJcbCJfjOTankJtjyoC6-xdlrldncjh2mhxGm3YyELJhU5jR-Jp8QvW6ICn0HHJ2_B-L5x810x9R2nFnOGFnmmbJgBC32dSZ2icim1pejEyS54kp2v1GEY1Y5WTdi_m00"></p>
+<h3 id="用例"><a href="#用例" class="headerlink" title="用例"></a>用例</h3><p>用例图<br>截屏–标记–分组到检项–更新电子巡查</p>
+<p><img src="https://www.plantuml.com/plantuml/svg/XLNBKkDM4DtVhr3DQiPbcHecAzMO_Np0V01bb4328sNCtWp6RoCJ_21W7YOYzb0WO82nBTlmC-ehQJM_aBxg6wD0kK9vmrM_pkdJtQcbrBAkkBK7kAf2hyrFpc5SX-rpfty0nRPRwpgF9JXyP0bzDQKdbKLzVa5FCiXddRxfz2zujmr7JNvq3jQnktD3zkv1XXk6ztJ3tiSKT7OBENwQywmRT7E76JORKxXHTMoJaZ1zTK76PHlhUc9-NLT-JIdpwyeRdhz0VyrF7tXFEU-fvNPBKDs1dIxVpS2M0URzZr4PK_FcTrxS0wE1DK3BffpipIJSodpojo0WYqHaGOK1l-j68anLbnPKbRrdyJYSs6uxpVSgphZ57pOnMJpEeDKD1tNwHO7AJnVSsj2zh47l7BPxJC4_nEZdAkwNGPJNhdbvqpzhUOLlaC_nofd0Z3wyaUEjox0Fbb4RW9d3OgGRBpLuxH5_O7QYl5donfTH2a81MIm6nhK85Yeq5cDKZ_kjwGwpCpBHLTCPx_7J7emCw6_1RJh4IM9HJqn8uN-biVL-Uq0jUkPbTYelrmDomcv3TXkiWVTqwBNBiiTWbNc-Yl0WbtK6eclOARH0QRt89UXqxB9hTzn32yNd3lVuSIOAnXSllGKx9t0S2109n383Xi0yGFW_HdclrnKnReTE_qgK8TyBMFuKafxXR_o-C9_I2NyyZg4FxtdZvlCdJUhZ9I48-GEIyfeB98cCoP608zueHNmzMdxxGTPBcO8H-lmfq8COc7mFtIRvnP3LRuAFiwy-KWGC5RBw45DGWv0RFbkP7JJqpp9U9n-O_1HJLFNZpskhAIMnjhoMZ2VrXJbKjZCwbJKXWk89cBVU_RdVjFop_OypmdmEmKvX5gdL2ALZsvhWDQclJjXEwkiRowaGsoGTqUhM39WPjvhbZG7AD23QinxTiHMsWJ_AOQjfZV27-vvbahlS6Y_QEU4AyYPlN943vM2yK89YLtehv89WnAzlq_CqzAeQYJZzYjHdiSlJcvI0GaSYgXeMNs9jPMKfJ4Um3ec-VpsG1rvj-OVPi8A4Qavi76r4m2jMb1nvgu9x5FxiJXNeQTk_A8S9ZGejtXfU9-kVxLBhgUbCXWpY__yO9HOtbfznK8-eLB7lntN24OBdFBNvvZMjX2YCqj0foSxkNqFrRrw_nuKu0yOkBYndE1JtOIge0POezH6GJI5WXEgtAQXdjA1I3-wGiUizz2XyrElTuLhrSdVqFqwaVnJiw71UQOKBmD-kq1FExNHA60eUvseEZnUg9pX7T9fGWdYi6DuqyJMuHPg2ToMyDh05i7b0Lua59i8ssD7QPDNIdfLha_QtiA9Lfj6-cUmOH8HBXSazfoQNVbbCeR6SH8tuaSgNZq5AagOc9HF8G4eY0Coa0PM7pTU8MTZ-xWmRZbro2rzPy45Ol0tJ_axZXGw_g-D0KUFf-R_M4_hVQQxL5chQtGy__mC0"></p>
+<h3 id="时序图"><a href="#时序图" class="headerlink" title="时序图"></a>时序图</h3><p><img src="https://www.plantuml.com/plantuml/svg/VL7BJjj05DtxA-O36ecr9NVF1_01nXw9GB2HcRHbvxGaDgd8GuH7crIXa8Ye8YMea40Wz6TyPy9VCEEPsCw6pOmzzznppZsNv4a18zQwXs439hzfjm-pOoZtwUaOfdLelsWMTWZsq0OsRUnfqRGolxg4-jVeeIRFkLzcF_TPgmlD6JG7jDFzGCSXBTr0lVdgbtWDgWFgbsXd2k6O_qQp8rORQTYn5QTc5edh5BVNkSoAPbh4zH0D_t1nPEwYJQ9PhaCyju3eUJ3_Eu997yeJKTeslIs5PwqdTjqIZxPdVkQaYkOae9rhyKpm5pv6GXKzLAFdS_Wn4BNYJi6DdQoxHSSslJr4BtqHXInR6zZQubKUH9xi8HcGA1JokqG8vJ-P10kZcmJbSXzZNxeqAubOxGOkleaesY_i8D1idEqo38CUFD9_0rarZ9Gpdb0SCQySJPVW5AGcbbTg8Fh_2uPdMIq5JFXa9ZeF2OQdq0kMM5LWydgFLG4pBx5hFfKAUJ5Lehl8Mv7bSl3imzLt2KyT96jPV2mtG-zsVjT_3Gv5qn94BKoNX3HiGBNBHS8Akts2tZvhLB9k4vbKUR5nTSUaOjb8HxHzHqz6QwjP1WLx0m00"></p>
+<h3 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h3><p><img src="https://www.plantuml.com/plantuml/svg/XLLRJnj757xk_eeHJ-3Kk2HlIng9Muih4r0S8qL2HSFks1vblUlkZab95GaLKX8ACRGXGS64ca1ZLI85bHOQS_apdlNorB_GixFhNMDmYn2S_SvbpdpdCemoZI1-kiQVxjRNbYusj-i7LRvnvdo0txAaaJH3MO9LOagyLE4ljkpISxwuvSoTrj_CywsFzV9ixNZHETzmoalE-Lwj-ixtj5_jy-stdgaizNGZ-zsilRKBeUrAcM--viLrU-DGjl_w_kBurnW_dkC7ixMJTRxqIhe9niMLsiUTsl4RlbYM_L35LUVF8tljq7xvTmm-mALMhOBUEyCfblZocaHqrKzNKZHiMQXZ33FJq4PrZUfad9970uRk0XenEn2sa24K27qd8VY9Hld1MtlsVRqw3xA0lZ2D74h3d_61NW7SJIQPIVKCYbZCC4bS_QGLpXhvkpX719oAtyTJcZWPHLX35Ah9ISGNJksrVJXjSj8xltFQe6gNeb7buHYcZxFOw5CODVGhsaJXMuhrJBCMDQa7u7mJovtn19qcL4yR5efqQI37GPQUDDW94eBx1s27HzO0qJH1aG92UtxwHqSJY5g3X66g-Kp4TKOon1IUzsVo7XCZmmdyU6R0fLua7S_X386qD40zkTTdBBJnQADJOrc36PVXHZ562k8IVQQ9PsvxcOyOAj5Gv4w4CfApXAQtBUEeCzxliTX5ft0ghnbOzRxbJc3JWew2RlAyfpH3UUWxkbntVft5kWgjbCedm6qGCzpb5G7Ol4IcruK1fU5d2x50wXD9DnX1pCWZ8zraAUpupdBzPOKVbM6Ml462ENHfjdyvuYV5VqwMU76nld7Cd_vX_xnSEorTp5QTirNa3WPouxOKML0LL3adY6jRwbYiH-OlAlQpSuHkoZ3AzUSB2DsIaVF-XuljrJR5RvqQvgwSNZ-WQmI1-5pHhxte12Yv-wzXLDyxuolBpj7l_6o-9LZURGpWADkmTSvBzSgFrzgAc2bJyqmJekqoIOPPmO86zYfFrDPqCrGDyjWuj7_Q4oG9f7cuj8ROspH8eO6WsBK1x_O4XwUAKSrb8DkcS0--zBeXISnfVtrPGcmVyGQQnYOooJS5OZ7vg-7KlSGzxwFTGDmGNP_59b6Rbmw467AdppHqgYJnD97zrfUR4WmjuhgL1pbiB_3_d-uABz-NpyUlr648Q3GLae8R_wVItRojwgItgA-5hxDF60fsDy1LNCzGLb2lEe3vTVWOLQnMR9ogn6yJ2gDYfh52cdVk8D581ZCIJ6N8slNxwyhMlwJ0gXekJZV-PJK4RrL3OaGlv527-_I9BDpdpq_1nGP96XSqXZv7dtqQYrrKrvqFEu5o1ES1j3TtdONVU6aVXZjG9GbMie7INYdL3xS3PO9QBF1xzjefLzn4mWSg4etUyLzhIUJJ3FXZq0o9Lqi0GGmP-SjOl2QkVaBt8VTPl8nu-q0itiRStkxk3jUax4eCzXlGqEEw0TRFz66ggaG7xC5GKWftQiCLoIqfo1DwOwbEw8sbEg7ValsTAWM38-xYNLHgj8KHZOgm_m80"></p>
+<h3 id="活动图"><a href="#活动图" class="headerlink" title="活动图"></a>活动图</h3><p><img src="https://www.plantuml.com/plantuml/svg/LOvVIiD048VVvnJxc5oXEKqX6ne8KTezWANQf56eOYmjjJR-Wo0LX59iIT9S9ZCRdxo2swmMdAUPttpVxWXNU9pHqrfU3scqetLAcxvCBy7ZZc0TthPv5oYwhOen9Lii1nWjwq7ndLzf1-TxEGgqgLV0VVlNWvveTmMqA7nJdAMQXhF0TGpTcanqk0ygOFyIPiWuawlO1ARgw76lnmsQ17I_alcatj_WBFr3cXHV0Wtwjkj0goeN-3xLdlfJZwP-fYvZd3-OwiQJqoE_ZQeyEHpwV4RBrw_77OP3cPqVaiyCemJ33opky4AjDbQZ_W00"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://huos3203.github.io/2019/06/11/电子巡查项目设计/" data-id="cjxdem6kg0006ows6ymff1llt" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2019/06/14/定制开源的CLImageEditor图片编辑工具/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          定制开源的CLImageEditor图片编辑工具
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2019/06/09/testt/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">练习uml分解需求用例的方法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/分类/">分类</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/08/">八月 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2019/06/14/定制开源的CLImageEditor图片编辑工具/">定制开源的CLImageEditor图片编辑工具</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2019/06/11/电子巡查项目设计/">电子巡查项目设计</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2019/06/09/testt/">练习uml分解需求用例的方法</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2019/06/02/时序图dd/">时序图dd</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2019/05/31/暂存机制时序图/">暂存机制时序图</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 iTBoyer<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
